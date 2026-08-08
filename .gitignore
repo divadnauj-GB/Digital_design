@@ -3,3 +3,4 @@
 *.txt
 *.vvp
 build
+**/.DS_Store
