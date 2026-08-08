@@ -1,0 +1,1 @@
+add wave -noupdate /trafic_lights_tb/*
