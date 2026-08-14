@@ -1,8 +1,7 @@
-module sillyfunction(a,b,c,y);
-input a;
-input b;
-input c;
-output y;
+`timescale 1ns/1ps
+
+module sillyfunction(input wire a,b,c,
+                     output wire y);
 
 assign y=(~b&~c)|(a&~b);
 
