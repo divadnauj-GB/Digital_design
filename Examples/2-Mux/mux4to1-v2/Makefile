@@ -3,7 +3,6 @@ RUN=vvp
 WAVE=gtkwave
 
 SRC = $(wildcard *.v)
-SRC += ../mux2to1-v1/mux2to1.v
 
 all: test 
 
