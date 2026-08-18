@@ -1,0 +1,21 @@
+# See Cyclone II FPGA Family Errata, needed for dual-port dual-clock mode M4K
+# (http://www.altera.com/support/kdb/solutions/fb27180.html)
+
+set_parameter -name CYCLONEII_SAFE_WRITE  "VERIFIED_SAFE"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment  -name PHYSICAL_SYNTHESIS_EFFORT  FAST
+set_global_assignment  -name FITTER_EFFORT              FAST_FIT
+set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS "OFF"
+
+set_global_assignment -name GENERATE_CONFIG_SVF_FILE ON
+set_global_assignment -name GENERATE_SVF_FILE ON
+
+set_global_assignment -name GENERATE_RBF_FILE ON
+
+set_global_assignment -name USE_CONFIGURATION_DEVICE ON
+
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
+
+
