@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module priority_encoder_tb();
 
 reg [3:0] IN;

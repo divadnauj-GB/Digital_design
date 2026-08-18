@@ -6,20 +6,17 @@
     end
 
 
-module add_sub_tb();
-localparam Nbit=32;
+module divider_tb();
+localparam Nbit=4;
 
 reg [Nbit-1:0] A,B;
-reg addn_sub;
-wire [Nbit-1:0] S;
-wire Cout;
+wire [Nbit-1:0] Q,R;
 
-add_sub #(.Nbit(Nbit)) DUT(
+divider DUT(
     .A(A),
     .B(B),
-    .addn_sub(addn_sub),
-    .S(S),
-    .Cout(Cout)
+    .Q(Q),
+    .R(R)
 );
 
 
@@ -31,22 +28,16 @@ initial begin
 
 integer i,j;
 initial begin
-    addn_sub = 0;
-    for (i=0;i<(Nbit/4);i=i+1) begin
-        for (j=0; j<(Nbit/4);j=j+1) begin
+    for (i=0;i<(2**Nbit);i=i+1) begin
+        for (j=0; j<(2**Nbit);j=j+1) begin
             A = i;
             B = j;
             #10;
-            `assert(S,A+B);
-        end
-    end
-    addn_sub = 1;
-    for (i=0;i<(Nbit/4);i=i+1) begin
-        for (j=0; j<(Nbit/4);j=j+1) begin
-            A = i;
-            B = j;
-            #10;
-            `assert(S,A-B);
+            if(B==0) begin
+                `assert(Q,4'hx);
+            end else begin
+                `assert(A,Q*B+R);
+            end
         end
     end
     $display("All verification tests passed!");

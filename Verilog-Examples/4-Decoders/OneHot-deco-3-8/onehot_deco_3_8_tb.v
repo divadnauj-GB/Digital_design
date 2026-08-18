@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module onehot_deco_3_8_tb();
 
 reg [2:0] IN;

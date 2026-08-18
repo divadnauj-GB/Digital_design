@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module shiftter_left_tb();
 
 reg [3:0] IN;
