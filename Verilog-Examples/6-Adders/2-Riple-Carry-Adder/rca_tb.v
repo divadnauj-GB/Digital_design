@@ -32,23 +32,34 @@ initial begin
 integer i,j;
 initial begin
     Cin = 0;
-    for (i=0;i<2Nbit;i=i+1) begin
-        for (j=0; j<2Nbit;j=j+1) begin
+    for (i=0;i<2*Nbit;i=i+1) begin
+        for (j=0; j<2*Nbit;j=j+1) begin
             A = i;
             B = j;
-            #10;
+            #200;
             `assert(S,A+B+Cin);
         end
     end
     Cin = 1;
-    for (i=0;i<Nbit;i=i+1) begin
-        for (j=0; j<Nbit;j=j+1) begin
+    for (i=0;i<2*Nbit;i=i+1) begin
+        for (j=0; j<2*Nbit;j=j+1) begin
             A = i;
             B = j;
-            #10;
+            #200;
             `assert(S,A+B+Cin);
         end
     end
+    A = 0;
+    B = 0;
+    Cin = 0;
+    #200;
+    `assert(S,A+B+Cin);
+    A = 32'hFFFFFFFF;
+    B = 32'h00000000;
+    Cin = 1;
+    #300;
+    `assert(S,A+B+Cin);
+
     $display("All verification tests passed!");
     $finish;
 end
