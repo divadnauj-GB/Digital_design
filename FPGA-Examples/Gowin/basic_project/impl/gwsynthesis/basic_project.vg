@@ -1,0 +1,58 @@
+//
+//Written by GowinSynthesis
+//Tool Version "V1.9.12.03"
+//Sun Aug 23 01:27:12 2026
+
+//Source file index table:
+//file0 "\/Users/juand/Documents/UTM/ELDI/digital_design/FPGA-Examples/Gowin/basic_project/src/mux2to1.v"
+`timescale 100 ps/100 ps
+module mux2to1 (
+  D0,
+  D1,
+  S,
+  Y
+)
+;
+input D0;
+input D1;
+input S;
+output Y;
+wire D0_d;
+wire D1_d;
+wire S_d;
+wire Y_d;
+wire VCC;
+wire GND;
+  IBUF D0_ibuf (
+    .O(D0_d),
+    .I(D0) 
+);
+  IBUF D1_ibuf (
+    .O(D1_d),
+    .I(D1) 
+);
+  IBUF S_ibuf (
+    .O(S_d),
+    .I(S) 
+);
+  OBUF Y_obuf (
+    .O(Y),
+    .I(Y_d) 
+);
+  LUT3 Y_d_s (
+    .F(Y_d),
+    .I0(D0_d),
+    .I1(D1_d),
+    .I2(S_d) 
+);
+defparam Y_d_s.INIT=8'hCA;
+  VCC VCC_cZ (
+    .V(VCC)
+);
+  GND GND_cZ (
+    .G(GND)
+);
+  GSR GSR (
+    .GSRI(VCC) 
+);
+endmodule /* mux2to1 */

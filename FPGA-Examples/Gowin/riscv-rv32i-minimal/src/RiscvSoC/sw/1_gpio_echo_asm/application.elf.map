@@ -1,0 +1,74 @@
+
+Merging object attributes
+
+
+There are no discarded input sections
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+brom             0x00000000         0x00000400         xr
+sram             0x00000000         0x01000000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD crt0.o
+                0x00000400                        STACK_SIZE = 0x400
+
+.text           0x00000000       0x14
+                0x00000000                        . = ALIGN (0x4)
+ *(.text.init)
+ .text.init     0x00000000       0x14 crt0.o
+                0x00000000                _start
+ *(.text.trap_vec)
+ *(.text.reset)
+ *(.text)
+ .text          0x00000014        0x0 crt0.o
+                0x00000014                        . = ALIGN (0x4)
+ *(.text.*)
+
+.rodata         0x00000014        0x0
+                0x00000014                        . = ALIGN (0x4)
+ *(.rodata)
+ *(.rodata*)
+ *(.srodata)
+ *(.srodata*)
+                0x00000014                        . = ALIGN (0x4)
+                0x00000014                        _sidata = .
+
+.data           0x00000000        0x0 load address 0x00000014
+                0x00000000                        . = ALIGN (0x4)
+                0x00000800                        __global_pointer$ = (. + 0x800)
+                0x00000000                        _sdata = .
+ *(.data*)
+ .data          0x00000000        0x0 crt0.o
+ *(.data*)
+ *(.sdata .sdata.*)
+                0x00000000                        . = ALIGN (0x4)
+                0x00000000                        _edata = .
+
+.bss            0x00000000        0x0 load address 0x00000014
+                0x00000000                        . = ALIGN (0x4)
+                0x00000000                        __bss_start = .
+ *(.sbss .sbss.*)
+ *(.bss .bss.*)
+ .bss           0x00000000        0x0 crt0.o
+ *(COMMON)
+                0x00000000                        . = ALIGN (0x4)
+                0x00000000                        __BSS_END__ = .
+                0x00000000                        _end = .
+                [!provide]                        PROVIDE (end = .)
+
+.stack          0x00000000      0x400 load address 0x00000014
+                0x00000000                        . = ALIGN (0x4)
+                0x00000400                        . = (. + STACK_SIZE)
+ *fill*         0x00000000      0x400 
+                0x00000400                        . = ALIGN (0x4)
+                0x00000400                        __stack_top = .
+OUTPUT(application.elf elf32-littleriscv)
+
+.riscv.attributes
+                0x00000000       0x1a
+ .riscv.attributes
+                0x00000000       0x1a crt0.o

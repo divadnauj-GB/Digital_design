@@ -1,0 +1,16 @@
+{
+    "Device": "GW1NR-9",
+    "Files": [
+        {
+            "Path": "/Users/juand/Documents/UTM/ELDI/digital_design/FPGA-Examples/Gowin/basic_project/src/mux2to1.v",
+            "Type": "verilog"
+        }
+    ],
+    "IncludePath": [
+    ],
+    "LoopLimit": 2000,
+    "ResultFile": "/Users/juand/Documents/UTM/ELDI/digital_design/FPGA-Examples/Gowin/basic_project/impl/temp/rtl_parser.result",
+    "Top": "mux2to1",
+    "VerilogStd": "sysv",
+    "VhdlStd": "vhdl_93"
+}

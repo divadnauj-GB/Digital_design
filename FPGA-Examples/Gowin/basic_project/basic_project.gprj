@@ -1,0 +1,11 @@
+<?xml version="1" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project>
+    <Template>FPGA</Template>
+    <Version>5</Version>
+    <Device name="GW1NR-9" pn="GW1NR-LV9QN88PC6/I5">gw1nr9-012</Device>
+    <FileList>
+        <File path="src/mux2to1.v" type="file.verilog" enable="1"/>
+        <File path="constraint/pins.cst" type="file.cst" enable="1"/>
+    </FileList>
+</Project>
